@@ -1,12 +1,13 @@
 import * as  multer from 'multer';
-import * as storage from '@google-cloud/storage';
+import { Storage, Bucket, ConfigurationObject } from '@google-cloud/storage';
 import * as uuid from 'uuid/v1';
+const storage: (options?:ConfigurationObject)=>Storage = require('@google-cloud/storage'); 
 
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 
-	private gcobj: storage.Storage;
-	private gcsBucket: storage.Bucket;
-	private options: storage.ConfigurationObject & { acl?: string, bucket?: string };
+	private gcobj: Storage;
+	private gcsBucket: Bucket;
+	private options: ConfigurationObject & { acl?: string, bucket?: string };
 
 	getFilename(req, file, cb) {
     	cb(null,`${uuid()}_${file.originalname}`);
@@ -15,7 +16,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		cb( null, '' );
 	}
 
-	constructor(opts: storage.ConfigurationObject & { filename?: any, bucket?:string }) {
+	constructor(opts: ConfigurationObject & { filename?: any, bucket?:string }) {
 		this.getFilename = (opts.filename || this.getFilename);
 
 		opts.bucket = (opts.bucket || process.env.GCS_BUCKET || null);
@@ -34,9 +35,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			throw new Error('You have to specify credentials key file for Google Cloud Storage to work.');
 		}
 
-        //TODO submit pr to typedef repo for default export
-		let s:any = storage; 
-		this.gcobj =  s({
+		this.gcobj = storage({
 			projectId: opts.projectId,
 			keyFilename: opts.keyFilename
 		});
