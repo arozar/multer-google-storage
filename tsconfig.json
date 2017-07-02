@@ -12,7 +12,10 @@
         "typeRoots": [
             "node_modules/@types"
         ],
-        "declaration": true
+        "declaration": true,
+        "types": [
+            "node", "mocha", "chai"
+        ]
     },
     "exclude": [
         "node_modules"

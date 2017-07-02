@@ -16,7 +16,9 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		cb( null, '' );
 	}
 
-	constructor(opts: ConfigurationObject & { filename?: any, bucket?:string }) {
+	constructor(opts?: ConfigurationObject & { filename?: any, bucket?:string }) {
+		 opts = opts || {};
+		
 		this.getFilename = (opts.filename || this.getFilename);
 
 		opts.bucket = (opts.bucket || process.env.GCS_BUCKET || null);
@@ -41,6 +43,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		});
 
 		this.gcsBucket = this.gcobj.bucket(opts.bucket);
+
 		this.options = opts;
 	}
 

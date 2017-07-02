@@ -1,11 +1,14 @@
 {
   "name": "multer-google-storage",
-  "version": "0.1.1",
+  "version": "0.0.0-development",
   "description": "Streaming multer storage engine for Google Cloud Storage",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc"
+    "test": "npm run build && mocha lib/index.test.js",
+    "build": "npm run clean && tsc",
+    "clean": "rimraf lib",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
+    "commit": "git-cz"
   },
   "keywords": [
     "multer",
@@ -18,22 +21,40 @@
   "license": "MIT",
   "dependencies": {
     "@google-cloud/storage": "^1.1.1",
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
+    "@types/mockery": "^1.4.29",
+    "D": "0.0.1",
     "body-parser": "^1.17.2",
+    "chai": "^4.0.2",
     "compression": "^1.6.2",
     "cors": "^2.8.3",
     "crypto": "0.0.3",
     "express": "^4.15.3",
+    "mocha": "^3.4.2",
+    "mockery": "^2.1.0",
     "mongoose": "^4.10.2",
     "multer": "^1.3.0",
     "nodemon": "^1.11.0",
     "path": "^0.12.7",
     "request": "^2.81.0",
+    "rimraf": "^2.6.1",
     "uuid": "^3.1.0"
   },
   "devDependencies": {
-    "@types/node": "^8.0.7",
     "@types/google-cloud__storage": "^1.1.0",
     "@types/multer": "^1.3.2",
+    "@types/node": "^8.0.7",
+    "commitizen": "^2.9.6",
+    "cz-conventional-changelog": "^2.0.0",
+    "semantic-release": "^6.3.6",
     "typescript": "^2.4.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ARozar/multer-google-storage.git"
+  },
+  "czConfig": {
+    "path":"node_modules/cz-conventional-changelog"
   }
 }
