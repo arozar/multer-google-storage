@@ -1,4 +1,6 @@
 # multer-google-storage
+[![Travis build](https://img.shields.io/travis/ARozar/multer-google-storage.svg)](https://travis-ci.org/ARozar/multer-google-storage/)
+
 This is a multer storage engine for google's file storage.
 
 ## Installation
