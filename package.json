@@ -8,6 +8,8 @@
     "test": "npm run build && nyc --reporter=html --reporter=text mocha lib/index.test.js",
     "build": "npm run clean && tsc",
     "clean": "rimraf lib",
+    "precommit": "npm test",
+    "prepush": "npm test",
     "semantic-release": "semantic-release pre && npm publish && semantic-release post",
     "commit": "git-cz"
   },
@@ -48,7 +50,7 @@
     "@types/node": "^8.0.7",
     "commitizen": "^2.9.6",
     "cz-conventional-changelog": "^2.0.0",
-    "ghooks": "^2.0.0",
+    "husky": "^0.14.3",
     "nyc": "^11.0.3",
     "semantic-release": "^6.3.6",
     "typescript": "^2.4.1"
@@ -59,10 +61,5 @@
   },
   "czConfig": {
     "path": "node_modules/cz-conventional-changelog"
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run test"
-    }
   }
 }
