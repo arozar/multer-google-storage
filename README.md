@@ -6,6 +6,10 @@ This is a multer storage engine for google's file storage.
 ## Installation
     npm install multer-google-storage --save
 
+or
+    yarn add multer-google-storage
+
+
 ## Usage
     import * as  multer from 'multer';
     import * as express from 'express';
