@@ -22,9 +22,8 @@ or
     });
 
     app.post('/upload', uploadHandler.any(), (req:Request & any, res) => {
-        let fileName = req.file.blobName;
-        console.log(req.file);
-        res.json(req.file);
+        console.log(req.files);
+        res.json(req.files);
     });
 
 NB: This package is written to work with es5 or higher.  If you have an editor or IDE that can understand d.ts (typescript) type definitions you will get additional support from your tooling though you do not need to be using typescript to use this package.
