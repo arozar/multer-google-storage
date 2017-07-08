@@ -30,7 +30,7 @@ or
 NB: This package is written to work with es5 or higher.  If you have an editor or IDE that can understand d.ts (typescript) type definitions you will get additional support from your tooling though you do not need to be using typescript to use this package.
 
 ## Google Cloud
-### Creating a storgage bucket
+### Creating a storage bucket
 For instructions on how to create a storage bucket see the following [documentation from google](https://cloud.google.com/storage/docs/creating-buckets#storage-create-bucket-console).
 
 ### Obtaining credentials
