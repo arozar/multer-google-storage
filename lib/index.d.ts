@@ -14,3 +14,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
     _handleFile: (req: any, file: any, cb: any) => void;
     _removeFile: (req: any, file: any, cb: any) => void;
 }
+export declare function storageEngine(opts?: ConfigurationObject & {
+    filename?: any;
+    bucket?: string;
+}): MulterGoogleCloudStorage;

@@ -12,6 +12,8 @@ or
 
 
 ## Usage
+### ES6
+
     import * as  multer from 'multer';
     import * as express from 'express';
     import MulterGoogleCloudStorage from 'multer-google-storage';
@@ -22,7 +24,21 @@ or
       storage: new MulterGoogleCloudStorage()
     });
 
-    app.post('/upload', uploadHandler.any(), (req:Request & any, res) => {
+    app.post('/upload', uploadHandler.any(), (req, res) => {
+        console.log(req.files);
+        res.json(req.files);
+    });
+
+### ES5 / Common.js imports
+
+    var multer = require("multer");
+    var express = require("express");
+    var multerGoogleStorage = require("multer-google-storage");
+    var app = express();
+    var uploadHandler = multer({
+        storage: multerGoogleStorage.storageEngine()
+    });
+    app.post('/upload', uploadHandler.any(), function (req, res) {
         console.log(req.files);
         res.json(req.files);
     });
