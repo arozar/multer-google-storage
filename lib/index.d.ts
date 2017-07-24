@@ -1,4 +1,3 @@
-/// <reference types="google-cloud__storage" />
 import * as multer from 'multer';
 import { ConfigurationObject } from '@google-cloud/storage';
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
