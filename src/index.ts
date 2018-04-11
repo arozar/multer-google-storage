@@ -1,7 +1,7 @@
 import * as  multer from 'multer';
 import { Storage, Bucket, ConfigurationObject } from '@google-cloud/storage';
 import * as uuid from 'uuid/v1';
-const storage: (options?:ConfigurationObject)=>Storage = require('@google-cloud/storage'); 
+const storage: (options?: ConfigurationObject) => Storage = require('@google-cloud/storage');
 
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 
@@ -10,15 +10,15 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	private options: ConfigurationObject & { acl?: string, bucket?: string };
 
 	getFilename(req, file, cb) {
-    	cb(null,`${uuid()}_${file.originalname}`);
+		cb(null, `${uuid()}_${file.originalname}`);
 	}
-	getDestination( req, file, cb ) {
-		cb( null, '' );
+	getDestination(req, file, cb) {
+		cb(null, '');
 	}
 
-	constructor(opts?: ConfigurationObject & { filename?: any, bucket?:string }) {
-		 opts = opts || {};
-		
+	constructor(opts?: ConfigurationObject & { filename?: any, bucket?: string }) {
+		opts = opts || {};
+
 		this.getFilename = (opts.filename || this.getFilename);
 
 		opts.bucket = (opts.bucket || process.env.GCS_BUCKET || null);
@@ -62,22 +62,23 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 				file.stream.pipe(gcFile.createWriteStream({ predefinedAcl: this.options.acl || 'private' }))
 					.on('error', (err) => cb(err))
 					.on('finish', (file) => cb(null, {
-							path: `https://${this.options.bucket}.storage.googleapis.com/${filename}`,
-							filename: filename
-						})
+						path: `https://${this.options.bucket}.storage.googleapis.com/${filename}`,
+						filename: filename
+					})
 					);
 
 			});
 
 		});
 	}
-	_removeFile =  (req, file, cb) => {
+	_removeFile = (req, file, cb) => {
 		var gcFile = this.gcsBucket.file(file.filename);
 		gcFile.delete();
+		cb();
 	};
 }
 
-export function storageEngine(opts?: ConfigurationObject & { filename?: any, bucket?:string }){
-	
+export function storageEngine(opts?: ConfigurationObject & { filename?: any, bucket?: string }) {
+
 	return new MulterGoogleCloudStorage(opts);
 }
