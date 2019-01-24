@@ -70,6 +70,7 @@ The constructor of the MulterGoogleCloudStorage class can be passed an optional 
 |`projectId`|`string`|`"test-prj-1234"`|
 |`filename`| `function`|`(request, file, callback): void`|
 |`bucket`|`string`|`"mybucketname"`|
+|`contentType`|`function`|`(request, file): string`|
 
 #### Custom file naming
 If you need to customize the naming of files then you are able to provide a function that will be called before uploading the file.  The third argument of the function must be a standard node callback so pass any error in the first argument (or null on sucess) and the string name of the file on success.
@@ -77,4 +78,3 @@ If you need to customize the naming of files then you are able to provide a func
 	getFilename(req, file, cb) {
     	cb(null,`${uuid()}_${file.originalname}`);
 	}
-
