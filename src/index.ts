@@ -1,13 +1,15 @@
 import * as  multer from 'multer';
-import { Storage, Bucket, ConfigurationObject } from '@google-cloud/storage';
+import * as Storage from '@google-cloud/storage';
+import { Bucket, ConfigurationObject } from '@google-cloud/storage';
 import * as uuid from 'uuid/v1';
-const storage: (options?:ConfigurationObject)=>Storage = require('@google-cloud/storage'); 
+import { Request } from 'express';
+const storage: (options?:ConfigurationObject)=>Storage = require('@google-cloud/storage');
 
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 
 	private gcobj: Storage;
 	private gcsBucket: Bucket;
-	private options: ConfigurationObject & { acl?: string, bucket?: string };
+	private options: ConfigurationObject & { acl?: string, bucket?: string, contentType?: ContentTypeFunction };
 
 	getFilename(req, file, cb) {
     	cb(null,`${uuid()}_${file.originalname}`);
@@ -16,10 +18,15 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		cb( null, '' );
 	}
 
-	constructor(opts?: ConfigurationObject & { filename?: any, bucket?:string }) {
+	public getContentType: ContentTypeFunction = (req, file) => {
+		return undefined;
+	}
+
+	constructor(opts?: ConfigurationObject & { filename?: any, bucket?:string, contentType?: ContentTypeFunction }) {
 		 opts = opts || {};
-		
+
 		this.getFilename = (opts.filename || this.getFilename);
+		this.getContentType = (opts.contentType || this.getContentType);
 
 		opts.bucket = (opts.bucket || process.env.GCS_BUCKET || null);
 		opts.projectId = opts.projectId || process.env.GCLOUD_PROJECT || null;
@@ -59,14 +66,25 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 					return cb(err);
 				}
 				var gcFile = this.gcsBucket.file(filename);
-				file.stream.pipe(gcFile.createWriteStream({ predefinedAcl: this.options.acl || 'private' }))
+
+				const streamOpts: Storage.WriteStreamOptions = {
+					predefinedAcl: this.options.acl || 'private'
+				};
+
+				const contentType = this.getContentType(req, file);
+
+				if (contentType) {
+				  streamOpts.metadata = {contentType};
+				}
+
+				file.stream.pipe(
+					gcFile.createWriteStream(streamOpts))
 					.on('error', (err) => cb(err))
 					.on('finish', (file) => cb(null, {
 							path: `https://${this.options.bucket}.storage.googleapis.com/${filename}`,
 							filename: filename
 						})
 					);
-
 			});
 
 		});
@@ -78,6 +96,8 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 }
 
 export function storageEngine(opts?: ConfigurationObject & { filename?: any, bucket?:string }){
-	
+
 	return new MulterGoogleCloudStorage(opts);
 }
+
+export type ContentTypeFunction = (req: Request, file: Express.Multer.File) => string | undefined;
