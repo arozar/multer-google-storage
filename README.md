@@ -50,7 +50,7 @@ NB: This package is written to work with es5 or higher.  If you have an editor o
 For instructions on how to create a storage bucket see the following [documentation from google](https://cloud.google.com/storage/docs/creating-buckets#storage-create-bucket-console).
 
 ### Obtaining credentials
-For instructions on how to obtain the JSON keyfile as well a "projectId" (contained in the key file) please refer to the following [documentation from google](https://googlecloudplatform.github.io/google-cloud-node/#/docs/google-cloud/0.56.0/guides/authentication.)
+For instructions on how to obtain the JSON keyfile as well a "projectId" (contained in the key file) please refer to the following [documentation from google](https://cloud.google.com/docs/authentication/getting-started)
 ### Credentials
 #### Default method
 If using the MulterGoogleCloudStorage class without passing in any configuration options then the following environment variables will need to be set:
