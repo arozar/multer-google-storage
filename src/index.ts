@@ -1,15 +1,14 @@
 import * as  multer from 'multer';
-import * as Storage from '@google-cloud/storage';
-import { Bucket, ConfigurationObject } from '@google-cloud/storage';
+import { Storage as StorageType, Bucket, CreateWriteStreamOptions, StorageOptions, PredefinedAcl } from '@google-cloud/storage';
 import * as uuid from 'uuid/v1';
 import { Request } from 'express';
-const storage: (options?:ConfigurationObject)=>Storage = require('@google-cloud/storage');
+import { Metadata } from '@google-cloud/common';
+const Storage = require('@google-cloud/storage');
 
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
-
-	private gcobj: Storage;
+	private gcobj: StorageType;
 	private gcsBucket: Bucket;
-	private options: ConfigurationObject & { acl?: string, bucket?: string, contentType?: ContentTypeFunction };
+	private options: StorageOptions & { acl?: PredefinedAcl, bucket?: string, contentType?: ContentTypeFunction, metadata?: Metadata };
 
 	getFilename(req, file, cb) {
     	cb(null,`${uuid()}_${file.originalname}`);
@@ -22,7 +21,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		return undefined;
 	}
 
-	constructor(opts?: ConfigurationObject & { filename?: any, bucket?:string, contentType?: ContentTypeFunction }) {
+	constructor(opts?: StorageOptions & { filename?: any, acl?: PredefinedAcl, bucket?:string, contentType?: ContentTypeFunction, metadata?: Metadata }) {
 		 opts = opts || {};
 
 		this.getFilename = (opts.filename || this.getFilename);
@@ -44,7 +43,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			throw new Error('You have to specify credentials key file for Google Cloud Storage to work.');
 		}
 
-		this.gcobj = storage({
+		this.gcobj = new Storage({
 			projectId: opts.projectId,
 			keyFilename: opts.keyFilename
 		});
@@ -67,14 +66,14 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 				}
 				var gcFile = this.gcsBucket.file(filename);
 
-				const streamOpts: Storage.WriteStreamOptions = {
-					predefinedAcl: this.options.acl || 'private'
+				const streamOpts: CreateWriteStreamOptions = {
+					predefinedAcl: this.options.acl || 'private',
+					metadata: this.options.metadata || {}
 				};
 
 				const contentType = this.getContentType(req, file);
-
 				if (contentType) {
-				  streamOpts.metadata = {contentType};
+				  streamOpts.metadata.contentType = contentType;
 				}
 
 				file.stream.pipe(
@@ -95,7 +94,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	};
 }
 
-export function storageEngine(opts?: ConfigurationObject & { filename?: any, bucket?:string }){
+export function storageEngine(opts?: StorageOptions & { filename?: any, bucket?:string }){
 
 	return new MulterGoogleCloudStorage(opts);
 }
