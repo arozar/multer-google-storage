@@ -1,6 +1,6 @@
 import * as  multer from 'multer';
 import * as Storage from '@google-cloud/storage';
-import { Bucket, ConfigurationObject } from '@google-cloud/storage';
+import { Bucket, ConfigurationObject, Credentials } from '@google-cloud/storage';
 import * as uuid from 'uuid/v1';
 import { Request } from 'express';
 const storage: (options?:ConfigurationObject)=>Storage = require('@google-cloud/storage');
@@ -31,7 +31,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		opts.bucket = (opts.bucket || process.env.GCS_BUCKET || null);
 		opts.projectId = opts.projectId || process.env.GCLOUD_PROJECT || null;
 		opts.keyFilename = opts.keyFilename || process.env.GCS_KEYFILE || null;
-		opts.credentials = opts.credentials || process.env.GCS_CREDENTIALS || null;		
+		opts.credentials = <Credentials> opts.credentials || <Credentials> process.env.GCS_CREDENTIALS || null;		
 
 		if (!opts.bucket) {
 			throw new Error('You have to specify bucket for Google Cloud Storage to work.');
