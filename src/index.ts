@@ -92,6 +92,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	_removeFile =  (req, file, cb) => {
 		var gcFile = this.gcsBucket.file(file.filename);
 		gcFile.delete();
+		cb(null);
 	};
 }
 
