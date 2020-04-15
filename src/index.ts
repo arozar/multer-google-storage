@@ -1,5 +1,4 @@
 import * as  multer from 'multer';
-//import * as gcStorage from '@google-cloud/storage';
 import { Bucket, CreateWriteStreamOptions, PredefinedAcl, Storage, StorageOptions } from '@google-cloud/storage';
 import { v1 as uuid } from 'uuid';
 import { Request } from 'express';
