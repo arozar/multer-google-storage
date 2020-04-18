@@ -4,7 +4,9 @@ import * as mockery from  'mockery';
 
 describe('multer-google-storage', () => {
     before(() => {
-        mockery.enable();
+        mockery.enable({
+            warnOnUnregistered: false
+        });
         const storageMock = () => { return {bucket: () => {}}};
         mockery.registerMock('@google-cloud/storage', storageMock);
 

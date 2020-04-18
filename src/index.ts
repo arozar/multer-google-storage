@@ -1,10 +1,8 @@
-import * as  multer from 'multer';
+import * as multer from 'multer';
 import { Bucket, CreateWriteStreamOptions, PredefinedAcl, Storage, StorageOptions } from '@google-cloud/storage';
 import { v1 as uuid } from 'uuid';
 import { Request } from 'express';
-
-const storage: (options?:StorageOptions)=>Storage = require('@google-cloud/storage');
-
+const storage: (options?:StorageOptions) => Storage = require('@google-cloud/storage');
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 
 	private gcsBucket: Bucket;
@@ -12,7 +10,8 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	private options: StorageOptions & { acl?: PredefinedAcl, bucket?: string, contentType?: ContentTypeFunction };
 
 	getFilename(req, file, cb) {
-    	cb(null,`${uuid()}_${file.originalname}`);
+		// TODO sinitize filename
+		cb(null,`${uuid()}_${file.originalname}`);
 	}
 	getDestination( req, file, cb ) {
 		cb( null, '' );
@@ -23,7 +22,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	}
 
 	constructor(opts?: StorageOptions & { filename?: any, bucket?:string, contentType?: ContentTypeFunction }) {
-		 opts = opts || {};
+		opts = opts || {};
 
 		this.getFilename = opts.filename || this.getFilename;
 		this.getContentType = opts.contentType || this.getContentType;
@@ -77,12 +76,17 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 				  streamOpts.metadata = {contentType};
 				}
 
-				file.stream.pipe(
-					gcFile.createWriteStream(streamOpts))
+				const outStream = gcFile.createWriteStream(streamOpts);
+				const size = outStream.writableLength;
+
+				file.stream.pipe(outStream)
 					.on('error', (err) => cb(err))
 					.on('finish', (file) => cb(null, {
-							path: `https://${this.options.bucket}.storage.googleapis.com/${filename}`,
-							filename: filename
+							destination: `${this.options.bucket}`,
+							uri: `gs://${this.options.bucket}/${filename}`,
+							linkurl: `https://storage.cloud.google.com/${this.options.bucket}/${filename}`,
+							filename: filename,
+							size: size
 						})
 					);
 			});
