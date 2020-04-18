@@ -1,6 +1,6 @@
 {
   "name": "multer-google-storage",
-  "version": "v2.0.0",
+  "version": "v2.0.1",
   "description": "Streaming multer storage engine for Google Cloud Storage",
   "main": "lib/index.js",
   "typings": "lib/index",

@@ -1,8 +1,10 @@
 import * as multer from 'multer';
+import * as gcsApi from '@google-cloud/storage';
 import { Bucket, CreateWriteStreamOptions, PredefinedAcl, Storage, StorageOptions } from '@google-cloud/storage';
 import { v1 as uuid } from 'uuid';
 import { Request } from 'express';
-const storage: (options?:StorageOptions) => Storage = require('@google-cloud/storage');
+//const storage: (options?:StorageOptions) => Storage = require('@google-cloud/storage');
+
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 
 	private gcsBucket: Bucket;
@@ -43,7 +45,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			throw new Error('You have to specify credentials key file for Google Cloud Storage to work.');
 		}
 
-		this.gcsStorage = storage({
+		this.gcsStorage = new gcsApi.Storage({
 			projectId: opts.projectId,
 			keyFilename: opts.keyFilename
 		});
