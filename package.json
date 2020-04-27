@@ -1,6 +1,6 @@
 {
   "name": "multer-cloud-storage",
-  "version": "v1.0.0",
+  "version": "v2.1.0",
   "description": "Multer storage engine for Google Cloud Storage",
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -10,11 +10,7 @@
   "scripts": {
     "test": "npm run build && jest",
     "build": "tsc",
-    "clean": "rimraf lib",
-    "precommit": "npm test",
-    "prepush": "npm test",
-    "semantic-release": "semantic-release pre && npm publish && semantic-release post",
-    "commit": "git-cz"
+    "clean": "rimraf lib"
   },
   "keywords": [
     "multer",
@@ -38,19 +34,12 @@
     "@types/multer": "^1.4.2",
     "@types/node": "^13.11.1",
     "@types/urlencode": "^1.1.1",
-    "commitizen": "^4.0.4",
-    "cz-conventional-changelog": "^3.1.0",
-    "husky": "^4.2.5",
     "jest": "^25.4.0",
     "rimraf": "^3.0.2",
-    "semantic-release": "^17.0.4",
     "typescript": "^3.8.3"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexandre-steinberg/multer-google-storage.git"
-  },
-  "czConfig": {
-    "path": "node_modules/cz-conventional-changelog"
+    "url": "https://github.com/alexandre-steinberg/multer-cloud-storage.git"
   }
 }

@@ -131,6 +131,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 						bucket: blob.metadata.bucket,
 						destination: this.blobFile.destination,
 						filename: this.blobFile.filename,
+						path: `${this.blobFile.destination}${this.blobFile.filename}`,
 						contentType: blob.metadata.contentType,
 						size: blob.metadata.size,
 						uri: `gs://${blob.metadata.bucket}/${this.blobFile.destination}${this.blobFile.filename}`,

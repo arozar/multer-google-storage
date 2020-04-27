@@ -2,11 +2,46 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [2.0.0](https://github.com/ARozar/multer-google-storage/compare/v1.3.0...v2.0.0) (2020-04-15)
+## v2.1.0 - 2020-04-26
+
+### Features
+
+- New options to explicit constructor
+  - `contentType`: `string`
+  - `destination`: `string`
+  - `hideFilename`: `boolean`
+- New information available on multer API file object
+  - `bucket`
+  - `destination`
+  - `filename`
+  - `path`
+  - `contenType`
+  - `size`
+  - `uri`
+  - `linkUrl`
+  - `selfLink`
+
+### Fixes
+
+- Now package.json defines engine Node.js >= 10
+  - Requirement of Google API v4.7.0, not correctly observed on v2.0.0
+
+### Other changes
+
+- Packages added:
+  - jest
+- Packages removed:
+  - commitizen
+  - cz-conventional-changelog
+  - husky
+  - nyc
+  - semantic-release
+
+## v2.0.0 - 2020-04-15
 
 ### ⚠ BREAKING CHANGES
 
-- Remove support for Node.js<8.x
+- Removed support for Node.js < 8.x
 
 ### Features
 
