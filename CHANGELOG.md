@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.1.1 - 2020-05-07
+
+### Fixes
+
+- destination is not urlencoded anymore
+
 ## v2.1.0 - 2020-04-26
 
 ### Features

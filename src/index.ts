@@ -36,12 +36,12 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			}
 
 			var escDestination = '';
-			escDestination += urlencode(destination
+			escDestination += destination
 				.replace(/^\.+/g, '')
-				.replace(/^\/+|\/+$/g, '')
-			);
-			if (escDestination != '') {
-				escDestination = urlencode(escDestination) + '/';
+				.replace(/^\/+|\/+$/g, '');
+
+			if (escDestination !== '') {
+				escDestination = escDestination + '/';
 			}
 			
 			this.blobFile.destination = escDestination;
