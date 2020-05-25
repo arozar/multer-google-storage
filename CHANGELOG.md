@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.2.0 - 2020-05-25
+
+### ⚠ BREAKING CHANGES
+
+- Dropped support for Node.js <= 8.x
+
+### Other changes
+
+- Package updates:
+  @google-cloud/storage    4.7.0 -> 5.0.1
+  @types/jest             25.2.1 -> 25.2.3
+  @types/node            13.13.5 -> 14.0.5
+  @types/urlencode         1.1.1 -> 1.1.2
+  typescript               3.8.3 -> 3.9.3
+  uuid                     8.0.0 -> 8.1.0
+
 ## v2.1.1 - 2020-05-07
 
 ### Fixes

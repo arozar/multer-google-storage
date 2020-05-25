@@ -1,6 +1,6 @@
 {
   "name": "multer-cloud-storage",
-  "version": "v2.1.1",
+  "version": "v2.2.0",
   "description": "Multer storage engine for Google Cloud Storage",
   "main": "lib/index.js",
   "typings": "lib/index",
@@ -23,20 +23,20 @@
   "author": "Alexandre Steinberg",
   "license": "MIT",
   "dependencies": {
-    "@google-cloud/storage": "^4.7.0",
+    "@google-cloud/storage": "^5.0.1",
     "@types/express": "^4.17.6",
     "multer": "^1.4.2",
     "urlencode": "^1.1.0",
-    "uuid": "^8.0.0"
+    "uuid": "^8.1.0"
   },
   "devDependencies": {
-    "@types/jest": "^25.2.1",
+    "@types/jest": "^25.2.3",
     "@types/multer": "^1.4.3",
-    "@types/node": "^13.13.5",
-    "@types/urlencode": "^1.1.1",
+    "@types/node": "^14.0.5",
+    "@types/urlencode": "^1.1.2",
     "jest": "^26.0.1",
     "rimraf": "^3.0.2",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.3"
   },
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 # multer-cloud-storage
 
-multer-cloud-storage is a [multer](https://github.com/expressjs/multer) custom store engine for Google Cloud Storage service. It is an updated and enhanced fork from ARozar's [multer-google-storage](https://github.com/ARozar/multer-google-storage).
+multer-cloud-storage is a [multer](https://github.com/expressjs/multer) custom store engine for Google Cloud Storage service. It is a fork from ARozar's [multer-google-storage](https://github.com/ARozar/multer-google-storage) that uses latest version of Google Cloud's API, allows additional information (like destination and contentType) to be set and reduces module footprint.
 
 ## Installation
 
