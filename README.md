@@ -1,4 +1,10 @@
 # multer-cloud-storage
+[![last commit](https://badgen.net/github/last-commit/alexandre-steinberg/multer-cloud-storage)](https://github.com/alexandre-steinberg/multer-cloud-storage)
+[![npm version](https://badgen.net/npm/v/multer-cloud-storage)](https://www.npmjs.com/package/multer-cloud-storage)
+[![MIT License](https://badgen.net/npm/license/multer-cloud-storage)](https://opensource.org/licenses/MIT)
+[![node](https://badgen.net/npm/node/multer-cloud-storage)](https://nodejs.org/en/)
+[![packagephobia install size](https://badgen.net/packagephobia/install/multer-cloud-storage)](https://packagephobia.now.sh/result?p=multer-cloud-storage)
+[![packagephobia publish size](https://badgen.net/packagephobia/publish/multer-cloud-storage)](https://packagephobia.now.sh/result?p=multer-cloud-storage)
 
 multer-cloud-storage is a [multer](https://github.com/expressjs/multer) custom store engine for Google Cloud Storage service. It is a fork from ARozar's [multer-google-storage](https://github.com/ARozar/multer-google-storage) that uses latest version of Google Cloud's API, allows additional information (like destination and contentType) to be set and reduces module footprint.
 

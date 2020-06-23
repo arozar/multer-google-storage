@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.3.0 - 2020-06-23
+
+### Bug Fixes
+
+- array() method issue: req.files present incorrect filename property
+
+### Other changes
+
+- Package updates:
+  @google-cloud/storage    5.0.1 -> 5.1.1
+  @types/jest             25.2.3 -> 26.0.0
+  @types/node             14.0.5 -> 14.0.13
+  jest                    26.0.1 -> 26.1.0
+  typescript               3.8.3 -> 3.9.5
+
 ## v2.2.0 - 2020-05-25
 
 ### ⚠ BREAKING CHANGES

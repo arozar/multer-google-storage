@@ -127,15 +127,17 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			file.stream.pipe(blobStream)
 				.on('error', (err) => cb(err))
 				.on('finish', (file) => {
+					const name = blob.metadata.name;
+					const filename = name.substr(name.lastIndexOf('/')+1);
 					cb(null, {
 						bucket: blob.metadata.bucket,
 						destination: this.blobFile.destination,
-						filename: this.blobFile.filename,
-						path: `${this.blobFile.destination}${this.blobFile.filename}`,
+						filename,
+						path: `${this.blobFile.destination}${filename}`,
 						contentType: blob.metadata.contentType,
 						size: blob.metadata.size,
-						uri: `gs://${blob.metadata.bucket}/${this.blobFile.destination}${this.blobFile.filename}`,
-						linkUrl: `https://storage.cloud.google.com/${blob.metadata.bucket}/${this.blobFile.destination}${this.blobFile.filename}`,
+						uri: `gs://${blob.metadata.bucket}/${this.blobFile.destination}${filename}`,
+						linkUrl: `https://storage.cloud.google.com/${blob.metadata.bucket}/${this.blobFile.destination}${filename}`,
 						selfLink: blob.metadata.selfLink,
 						//metadata: blob.metadata
 					})
