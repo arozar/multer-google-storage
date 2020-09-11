@@ -1,6 +1,6 @@
 {
   "name": "multer-cloud-storage",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "Multer storage engine for Google Cloud Storage",
   "main": "lib/index.js",
   "typings": "lib/index",
