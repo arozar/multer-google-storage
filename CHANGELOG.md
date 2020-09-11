@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.4.0 - 2020-09-11
+
+### Other changes
+
+- Package updates:
+  @google-cloud/storage    5.1.1 -> 5.3.0
+  @types/express          4.17.6 -> 4.17.8
+  @types/jest             25.2.3 -> 26.0.13
+  @types/multer            1.4.3 -> 1.4.4
+  @types/node            14.0.13 -> 14.10.1
+  jest                    26.1.0 -> 26.4.2
+  typescript               3.9.5 -> 3.9.7
+  uuid                     8.1.0 -> 8.3.0
+
 ## v2.3.0 - 2020-06-23
 
 ### Bug Fixes
