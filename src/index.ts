@@ -153,7 +153,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	};
 }
 
-export function storageEngine(opts?: StorageOptions & { filename?: any, bucket?:string }){
+export function storageEngine(opts?: StorageOptions & { bucket?: string; destination?: any; filename?: any; hideFilename?: boolean; contentType?: ContentTypeFunction }) {
 	return new MulterGoogleCloudStorage(opts);
 }
 
