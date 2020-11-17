@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.5.0 - 2020-11-16
+
+### Other changes
+
+- Package updates:
+  @google-cloud/storage    5.3.0 -> 5.5.0
+  @types/express          4.17.8 -> 4.17.9
+  @types/jest            26.0.13 -> 26.0.15
+  @types/node            14.10.1 -> 14.17.7
+  jest                    26.4.2 -> 26.6.3
+  typescript               3.9.7 -> 4.0.5
+  uuid                     8.3.0 -> 8.3.1
+
 ## v2.4.0 - 2020-09-11
 
 ### Other changes
