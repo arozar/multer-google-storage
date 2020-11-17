@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## v2.5.0 - 2020-11-16
+## v2.6.0 - 2020-11-16
 
 ### Other changes
 
@@ -14,6 +14,12 @@ All notable changes to this project will be documented in this file. See [standa
   jest                    26.4.2 -> 26.6.3
   typescript               3.9.7 -> 4.0.5
   uuid                     8.3.0 -> 8.3.1
+
+## v2.5.0 - 2020-11-16
+
+### Fixes
+
+Merge Duong Le's fix: Add mising params in StorageEngine's constructor
 
 ## v2.4.0 - 2020-09-11
 
