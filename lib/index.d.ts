@@ -1,4 +1,5 @@
-/// <reference types="google-cloud__storage" />
+/// <reference types="express" />
+/// <reference types="multer" />
 import * as multer from 'multer';
 import { ConfigurationObject } from '@google-cloud/storage';
 import { Request } from 'express';
