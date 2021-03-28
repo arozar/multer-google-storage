@@ -137,7 +137,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 						contentType: blob.metadata.contentType,
 						size: blob.metadata.size,
 						uri: `gs://${blob.metadata.bucket}/${this.blobFile.destination}${filename}`,
-						linkUrl: `https://storage.cloud.google.com/${blob.metadata.bucket}/${this.blobFile.destination}${filename}`,
+						linkUrl: `https://storage.googleapis.com/${blob.metadata.bucket}/${this.blobFile.destination}${filename}`,
 						selfLink: blob.metadata.selfLink,
 						//metadata: blob.metadata
 					})
