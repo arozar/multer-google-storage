@@ -35,9 +35,19 @@ describe('MulterGoogleCloudStorage checks', () => {
     expect(() => { cloudStorage(noProj) }).toThrow();
   })
 
-  test('Constructor shall throw error when missing keyFilename', () => {
+  test('Constructor shall throw error when missing credentials', () => {
     const noKey = { bucket: 'test', projectId: 'test' };
     expect(() => { cloudStorage(noKey) }).toThrow();
+  })
+
+  test('Constructor shall not throw error when using credentials object', () => {
+    const credentials = { bucket: 'test', projectId: 'test', credentials:{} };
+    expect(() => { cloudStorage(credentials) }).not.toThrow()
+  })
+
+  test('Constructor shall not throw error when using keyFileName', () => {
+    const keyFileName = { bucket: 'test', projectId: 'test', keyFilename:'./test' };
+    expect(() => { cloudStorage(keyFileName) }).not.toThrow()
   })
 
   test('MulterGoogleCloudStorage shall expose _handleFile', () => {
