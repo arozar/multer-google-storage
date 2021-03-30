@@ -83,7 +83,7 @@ Parameter Name | Type | Sample Value | Default Value | Notes
 `keyFilename`|`string`|`"./key.json"`| |Takes precedence over GCS_KEYFILE
 `maxRetries`|`number`|`5`|`3`| | 
 `projectId`|`string`|`"test-prj-1234"`| |Takes precedence over GCLOUD_PROJECT
-
+`uniformBucketLevelAccess`|`boolean`|`true`| |Signifies whether `uniformBucketLevelAccess` is enabled on the target bucket. When `true`, the `predefinedAcl` parameter is removed from requests [as it causes `400 Bad Request` responses](https://cloud.google.com/storage/docs/json_api/v1/objects/insert#request). 
 #### Custom file naming function
 If you need to customize the naming of files then you are able to provide a function that will be called before uploading the file.  The third argument of the function must be a standard node callback so pass any error in the first argument (or null on sucess) and the string name of the file on success.
 
