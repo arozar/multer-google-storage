@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.7.0 - 2021-03-30
+
+### Fixes
+
+Update index.d.ts (#3)
+uniformBucketLevelAccess enabled support (#4)
+Allow credentials OR keyFileName (#5)
+Swap cloud.google.com to storage.googleapis.com (#6)
+blobFile scoping to field uploaded. (#7)
+### Other changes
+
+- Package updates:
+  @google-cloud/storage    5.5.0 -> 5.8.3
+  @types/express          4.17.9 -> 4.17.11
+  @types/jest            26.0.15 -> 26.0.22
+  @types/multer            1.4.4 -> 1.4.5
+  @types/node            14.14.7 -> 14.14.37
+  typescript               4.0.5 -> 4.2.3
+  uuid                     8.3.1 -> 8.3.2
+
 ## v2.6.0 - 2020-11-16
 
 ### Other changes
@@ -10,7 +30,7 @@ All notable changes to this project will be documented in this file. See [standa
   @google-cloud/storage    5.3.0 -> 5.5.0
   @types/express          4.17.8 -> 4.17.9
   @types/jest            26.0.13 -> 26.0.15
-  @types/node            14.10.1 -> 14.17.7
+  @types/node            14.10.1 -> 14.14.7
   jest                    26.4.2 -> 26.6.3
   typescript               3.9.7 -> 4.0.5
   uuid                     8.3.0 -> 8.3.1
