@@ -4,12 +4,17 @@ import { v4 as uuid } from 'uuid';
 import urlencode = require('urlencode');
 import { Request } from 'express';
 
+type GoogleCloudBlobFileReference = {
+	destination?: string, 
+	filename: string
+}
+
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 
 	private gcsBucket: Bucket;
 	private gcsStorage: Storage;
 	private options: StorageOptions & { acl?: PredefinedAcl, bucket?: string, contentType?: ContentTypeFunction, uniformBucketLevelAccess?: boolean };
-	private blobFile: {destination?: string, filename: string} = { destination: '', filename: '' };
+	//private blobFile: {destination?: string, filename: string} = { destination: '', filename: '' };
 		
 	getFilename( req, file, cb ) {
 		if(typeof file.originalname === 'string')
@@ -29,7 +34,12 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			return undefined;
 	}
 
-	private setBlobFile( req, file ) {
+	private getBlobFileReference( req, file ): GoogleCloudBlobFileReference | false {
+		const blobFile: GoogleCloudBlobFileReference = {
+			destination: '',
+			filename: '',
+		};
+
 		this.getDestination(req, file, (err, destination) => {
 			if (err) {
 				return false;
@@ -44,7 +54,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 				escDestination = escDestination + '/';
 			}
 			
-			this.blobFile.destination = escDestination;
+			blobFile.destination = escDestination;
 		});
 		
 		this.getFilename(req, file, (err, filename) => {
@@ -52,14 +62,14 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 				return false;
 			}
 
-			this.blobFile.filename = urlencode(filename
+			blobFile.filename = urlencode(filename
 				.replace(/^\.+/g, '')
 				.replace(/^\/+/g, '')
 				.replace(/\r|\n/g, '_')
 			);
 		});
 
-		return true;
+		return blobFile;
 	}
 
 	constructor(opts?: StorageOptions & { bucket?: string, destination?: any, filename?: any, hideFilename?: boolean, contentType?: ContentTypeFunction }) {
@@ -111,8 +121,9 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	}
 
 	_handleFile = (req, file, cb) => {
-		if(this.setBlobFile( req, file )) {
-			var blobName = this.blobFile.destination + this.blobFile.filename;
+		const blobFile = this.getBlobFileReference( req, file );
+		if(blobFile !== false) {
+			var blobName = blobFile.destination + blobFile.filename;
 			var blob = this.gcsBucket.file(blobName);
 
 			const streamOpts: CreateWriteStreamOptions = {};
@@ -134,13 +145,13 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 					const filename = name.substr(name.lastIndexOf('/')+1);
 					cb(null, {
 						bucket: blob.metadata.bucket,
-						destination: this.blobFile.destination,
+						destination: blobFile.destination,
 						filename,
-						path: `${this.blobFile.destination}${filename}`,
+						path: `${blobFile.destination}${filename}`,
 						contentType: blob.metadata.contentType,
 						size: blob.metadata.size,
-						uri: `gs://${blob.metadata.bucket}/${this.blobFile.destination}${filename}`,
-						linkUrl: `https://storage.googleapis.com/${blob.metadata.bucket}/${this.blobFile.destination}${filename}`,
+						uri: `gs://${blob.metadata.bucket}/${blobFile.destination}${filename}`,
+						linkUrl: `https://storage.googleapis.com/${blob.metadata.bucket}/${blobFile.destination}${filename}`,
 						selfLink: blob.metadata.selfLink,
 						//metadata: blob.metadata
 					})
@@ -148,8 +159,9 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		}
 	}
 	_removeFile =  (req, file, cb) => {
-		if (this.setBlobFile( req, file )) {
-			var blobName = this.blobFile.destination + this.blobFile.filename;
+		const blobFile = this.getBlobFileReference( req, file );
+		if(blobFile !== false) {
+			var blobName = blobFile.destination + blobFile.filename;
 			var blob = this.gcsBucket.file(blobName);
 			blob.delete();
 		}
