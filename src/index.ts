@@ -4,7 +4,7 @@ import { v4 as uuid } from 'uuid';
 import urlencode = require('urlencode');
 import { Request } from 'express';
 
-export type MulterGoogleCloudBlobFile = {
+type GoogleCloudBlobFileReference = {
 	destination?: string, 
 	filename: string
 }
@@ -33,8 +33,8 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			return undefined;
 	}
 
-	private setBlobFile( req, file ): MulterGoogleCloudBlobFile | false {
-		const blobFile: MulterGoogleCloudBlobFile = {
+	private getBlobFileReference( req, file ): GoogleCloudBlobFileReference | false {
+		const blobFile: GoogleCloudBlobFileReference = {
 			destination: '',
 			filename: '',
 		};
@@ -119,7 +119,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	}
 
 	_handleFile = (req, file, cb) => {
-		const blobFile = this.setBlobFile( req, file );
+		const blobFile = this.getBlobFileReference( req, file );
 		if(blobFile !== false) {
 			var blobName = blobFile.destination + blobFile.filename;
 			var blob = this.gcsBucket.file(blobName);
@@ -155,7 +155,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		}
 	}
 	_removeFile =  (req, file, cb) => {
-		const blobFile = this.setBlobFile( req, file );
+		const blobFile = this.getBlobFileReference( req, file );
 		if(blobFile !== false) {
 			var blobName = blobFile.destination + blobFile.filename;
 			var blob = this.gcsBucket.file(blobName);
