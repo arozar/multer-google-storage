@@ -1,8 +1,10 @@
 import * as gcs from '@google-cloud/storage'
+import { StorageOptions } from '@google-cloud/storage';
+import { MulterGoogleCloudStorageOptions } from './index'
 import MulterGoogleCloudStorage from './index'
 jest.mock('@google-cloud/storage');
 
-const cloudStorage = (opts?: any) => new MulterGoogleCloudStorage(opts);
+const cloudStorage = (opts?: StorageOptions & MulterGoogleCloudStorageOptions ) => new MulterGoogleCloudStorage(opts);
 
 describe('MulterGoogleCloudStorage checks', () => {
   const opts = { bucket: 'test', projectId: 'test', keyFilename: './test' };
@@ -48,6 +50,11 @@ describe('MulterGoogleCloudStorage checks', () => {
   test('Constructor shall not throw error when using keyFileName', () => {
     const keyFileName = { bucket: 'test', projectId: 'test', keyFilename:'./test' };
     expect(() => { cloudStorage(keyFileName) }).not.toThrow()
+  })
+
+  test('Constructor shall not throw error when using uniformBucketLevelAccess', () => {
+    const uniformBucketLevelAccess = { bucket: 'test', projectId: 'test', keyFilename:'./test', uniformBucketLevelAccess: true  };
+    expect(() => { cloudStorage(uniformBucketLevelAccess) }).not.toThrow()
   })
 
   test('MulterGoogleCloudStorage shall expose _handleFile', () => {

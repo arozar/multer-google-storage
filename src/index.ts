@@ -9,11 +9,21 @@ type GoogleCloudBlobFileReference = {
 	filename: string
 }
 
+export type MulterGoogleCloudStorageOptions = {
+  acl?: PredefinedAcl;
+  bucket?: string;
+  contentType?: ContentTypeFunction | string;
+  destination?: any;
+  filename?: any;
+  hideFilename?: boolean;
+  uniformBucketLevelAccess?: boolean;
+};
+
 export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 
 	private gcsBucket: Bucket;
 	private gcsStorage: Storage;
-	private options: StorageOptions & { acl?: PredefinedAcl, bucket?: string, contentType?: ContentTypeFunction, uniformBucketLevelAccess?: boolean };
+	private options: StorageOptions & MulterGoogleCloudStorageOptions;
 	//private blobFile: {destination?: string, filename: string} = { destination: '', filename: '' };
 		
 	getFilename( req, file, cb ) {
@@ -72,7 +82,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 		return blobFile;
 	}
 
-	constructor(opts?: StorageOptions & { bucket?: string, destination?: any, filename?: any, hideFilename?: boolean, contentType?: ContentTypeFunction }) {
+	constructor(opts?: StorageOptions & MulterGoogleCloudStorageOptions) {
 		opts = opts || {};
 
 		typeof opts.destination === 'string' ? 
@@ -168,7 +178,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 	};
 }
 
-export function storageEngine(opts?: StorageOptions & { bucket?: string; destination?: any; filename?: any; hideFilename?: boolean; contentType?: ContentTypeFunction, uniformBucketLevelAccess?: boolean }) {
+export function storageEngine(opts?: StorageOptions & MulterGoogleCloudStorageOptions) {
 	return new MulterGoogleCloudStorage(opts);
 }
 
