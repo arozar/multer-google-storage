@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.8.0 - 2021-06-14
+
+### Maintenance
+
+- Package updates:
+  @google-cloud/storage    5.8.3 -> 5.8.5
+  @types/express         4.17.11 -> 4.17.12
+  @types/jest            26.0.22 -> 26.0.23
+  @types/node           14.14.37 -> 15.12.2
+  jest                    26.6.3 -> 27.0.4
+  typescript               4.2.3 -> 4.3.2
+## v2.7.1 - 2021-03-30
+
+### Fixes
+
+Fix constructor missing params type checking (#8)
+Add test check when using uniformBucketLevelAccess (#8)
+
 ## v2.7.0 - 2021-03-30
 
 ### Fixes

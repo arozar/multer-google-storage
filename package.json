@@ -23,20 +23,20 @@
   "author": "Alexandre Steinberg",
   "license": "MIT",
   "dependencies": {
-    "@google-cloud/storage": "^5.8.3",
-    "@types/express": "^4.17.11",
+    "@google-cloud/storage": "^5.8.5",
+    "@types/express": "^4.17.12",
     "multer": "^1.4.2",
     "urlencode": "^1.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.22",
+    "@types/jest": "^26.0.23",
     "@types/multer": "^1.4.5",
-    "@types/node": "^14.14.37",
+    "@types/node": "^15.12.2",
     "@types/urlencode": "^1.1.2",
-    "jest": "^26.6.3",
+    "jest": "^27.0.4",
     "rimraf": "^3.0.2",
-    "typescript": "^4.2.3"
+    "typescript": "^4.3.2"
   },
   "repository": {
     "type": "git",
