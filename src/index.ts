@@ -174,6 +174,7 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			var blobName = blobFile.destination + blobFile.filename;
 			var blob = this.gcsBucket.file(blobName);
 			blob.delete();
+			cb();
 		}
 	};
 }
