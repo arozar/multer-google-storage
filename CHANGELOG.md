@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v2.9.0 - 2022-09-26
+
+### Fixes
+
+Fix missing callback function (#9)
+
+### Maintenance
+
+- Package updates:
+  @google-cloud/storage    5.8.5 -> 6.5.2
+  @types/express         4.17.12 -> 4.17.14
+  @types/jest            26.0.23 -> 29.0.3
+  @types/node            15.12.2 -> 18.7.21
+  jest                    27.0.4 -> 29.0.3
+  multer                   1.4.4 -> 1.4.5-lts.1
+  typescript               4.3.2 -> 4.8.3
+  uuid                     8.3.2 -> 9.0.0
 ## v2.8.0 - 2021-06-14
 
 ### Maintenance
@@ -13,6 +30,7 @@ All notable changes to this project will be documented in this file. See [standa
   @types/node           14.14.37 -> 15.12.2
   jest                    26.6.3 -> 27.0.4
   typescript               4.2.3 -> 4.3.2
+  
 ## v2.7.1 - 2021-03-30
 
 ### Fixes
