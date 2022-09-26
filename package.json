@@ -25,13 +25,13 @@
   "dependencies": {
     "@google-cloud/storage": "^5.8.5",
     "@types/express": "^4.17.12",
-    "multer": "^1.4.2",
+    "multer": "^1.4.5-lts.1",
     "urlencode": "^1.1.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@types/jest": "^26.0.23",
-    "@types/multer": "^1.4.5",
+    "@types/multer": "^1.4.7",
     "@types/node": "^15.12.2",
     "@types/urlencode": "^1.1.2",
     "jest": "^27.0.4",
