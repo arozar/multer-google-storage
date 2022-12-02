@@ -115,9 +115,10 @@ export default class MulterGoogleCloudStorage implements multer.StorageEngine {
 			throw new Error('You have to specify project id for Google Cloud Storage to work.');
 		}
 
-		if (!opts.keyFilename && !opts.credentials) {
-			throw new Error('You have to specify credentials key file or credentials object, for Google Cloud Storage to work.');
-		}
+		/*
+		* If credentials and keyfile are not defined, Google Storage should appropriately be able to locate the
+		* default credentials for the environment see: https://cloud.google.com/docs/authentication/application-default-credentials#search_order
+		*/
 
 		this.gcsStorage = new Storage({
 			projectId: opts.projectId,

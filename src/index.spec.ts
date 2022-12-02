@@ -37,11 +37,6 @@ describe('MulterGoogleCloudStorage checks', () => {
     expect(() => { cloudStorage(noProj) }).toThrow();
   })
 
-  test('Constructor shall throw error when missing credentials', () => {
-    const noKey = { bucket: 'test', projectId: 'test' };
-    expect(() => { cloudStorage(noKey) }).toThrow();
-  })
-
   test('Constructor shall not throw error when using credentials object', () => {
     const credentials = { bucket: 'test', projectId: 'test', credentials:{} };
     expect(() => { cloudStorage(credentials) }).not.toThrow()
