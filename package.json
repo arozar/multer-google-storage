@@ -10,7 +10,8 @@
   "scripts": {
     "test": "npm run build && jest",
     "build": "tsc",
-    "clean": "rimraf lib"
+    "clean": "rimraf lib",
+    "prepare": "npm run clean && npm run build"
   },
   "keywords": [
     "multer",
