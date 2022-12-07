@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.0.0 - 2022-12-07
+
+### ⚠ BREAKING CHANGES
+
+- tsconfig.json target updated to ES6
+
+### Fixes
+
+ Add prepare script (#11)
+ Remove unnecessary constraint where creds or keyfile is required for instansiating Storage (#12)
+
+### Maintenance
+
+- Package updates:
+  @google-cloud/storage    6.5.2 -> 6.8.0
+  @types/jest             29.0.3 -> 29.2.4
+  @types/node            18.7.21 -> 18.11.11
+  jest                    29.0.3 -> 29.3.1
+  typescript               4.8.3 -> 4.9.3
+  
 ## v2.9.0 - 2022-09-26
 
 ### Fixes

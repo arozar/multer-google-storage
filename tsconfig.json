@@ -2,11 +2,11 @@
     "compilerOptions": {
         "module": "commonjs",
         "moduleResolution": "node",
-        "target": "es5",
+        "target": "es6",
         "noImplicitAny": false,
         "sourceMap": true,
         "lib": [
-            "es2015"
+            "es2016"
         ],
         "outDir": "./lib",
         "typeRoots": [
