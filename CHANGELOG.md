@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## v3.1.0 - 2023-07-16
+
+### Maintenance
+
+- Package updates:
+  @google-cloud/storage    6.8.0 -> 6.12.0
+  @types/express         4.17.14 -> 4.17.17
+  @types/jest             29.2.4 -> 29.5.3
+  @types/node           18.11.11 -> 20.4.2
+  jest                    29.3.1 -> 29.6.1
+  rimraf                   3.0.2 -> 5.0.1
+  typescript               4.9.3 -> 5.1.16
+
 ## v3.0.0 - 2022-12-07
 
 ### ⚠ BREAKING CHANGES
