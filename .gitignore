@@ -58,7 +58,4 @@ typings/
 .env
 
 .DS_Store
-
-#istanbul
-.nyc_output
-coverage
+lib
